@@ -1,0 +1,44 @@
+{
+  "name": "nuvem-shop-uber-integration",
+  "version": "1.0.0",
+  "author": "Marco Tulio",
+  "description": "",
+  "lint-staged": {
+    "*.{js,ts,tsx,md}": [
+      "prettier --write"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint --cache --fix"
+    ]
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcotgs/nuvem-shop-uber-integration.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcotgs/nuvem-shop-uber-integration/issues"
+  },
+  "homepage": "https://github.com/marcotgs/nuvem-shop-uber-integration#readme",
+  "dependencies": {
+    "typescript": "^4.7.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@types/jest": "^28.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.1",
+    "lint-staged": "^13.0.2",
+    "prettier": "^2.7.1",
+    "webpack": "^5.73.0"
+  }
+}
