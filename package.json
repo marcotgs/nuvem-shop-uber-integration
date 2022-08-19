@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/marcotgs/nuvem-shop-uber-integration#readme",
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.1.2",
+    "puppeteer": "^16.2.0",
     "typescript": "^4.7.3"
   },
   "devDependencies": {
@@ -33,6 +35,7 @@
     "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "dotenv": "^16.0.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",

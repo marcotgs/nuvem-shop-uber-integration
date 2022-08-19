@@ -10,7 +10,11 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@core/*": ["./src/core/*"],
+      "@testing/*": ["./src/testing/*"]
+    }
   },
   "exclude": ["node_modules"]
 }
