@@ -3,18 +3,27 @@
     "target": "es2019",
     "module": "commonjs",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "pretty": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
+    "baseUrl": "src",
     "incremental": true,
+    "outDir": "build",
     "paths": {
-      "@core/*": ["./src/core/*"],
-      "@testing/*": ["./src/testing/*"]
+      "@core/*": ["core/*"],
+      "@testing/*": ["testing/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/__mocks__/**/*"]
 }

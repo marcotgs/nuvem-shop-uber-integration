@@ -13,7 +13,9 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --watch --mode=development",
+    "start": "functions-framework --source=build/index.js --target=helloWorld",
+    "watch": "concurrently \"tsc -w\" \"nodemon --watch ./build/ --exec npm run start\""
   },
   "repository": {
     "type": "git",
@@ -25,23 +27,34 @@
   },
   "homepage": "https://github.com/marcotgs/nuvem-shop-uber-integration#readme",
   "dependencies": {
-    "@google-cloud/functions-framework": "^3.1.2",
-    "puppeteer": "^16.2.0",
-    "typescript": "^4.7.3"
+    "express": "^4.18.1",
+    "puppeteer": "^16.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@types/express": "^4.17.13",
     "@types/jest": "^28.1.1",
+    "@types/node": "^18.7.9",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "copy-webpack-plugin": "^11.0.0",
     "dotenv": "^16.0.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "lint-staged": "^13.0.2",
     "prettier": "^2.7.1",
-    "webpack": "^5.73.0"
+    "ts-loader": "^9.3.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0",
+    "webpack-shell-plugin-next": "^2.2.2"
   }
 }
