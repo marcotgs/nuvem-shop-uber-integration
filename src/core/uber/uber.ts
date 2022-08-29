@@ -1,43 +1,51 @@
-import { connection } from '@core/puppeteer';
-import { Page } from 'puppeteer';
-
-enum UberAddress {
-	pickup = 'pickup',
-	destination = 'destination',
-}
+import fetch from 'node-fetch';
+import { UberResponse, UberAddress, UberSuggestions, UberEstimates } from './types';
 
 export const getUberInstance = () => {
-	const { open } = connection;
-	let page: Page;
+	const locale = 'pt-BR';
+	const fetchUberApi = async <T>(path: string, body: object): Promise<UberResponse<T>> => {
+		const res = await fetch(`https://www.uber.com/api/${path}?localeCode=${locale}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-csrf-token': 'x',
+			},
+			body: JSON.stringify({
+				...body,
+				locale,
+			}),
+		});
 
-	const enterAddress = async (address: string, type: UberAddress) => {
-		const $input = await page.$(`input[name='${type}']`);
-		await $input?.type(address);
-		await page.waitForXPath('//*[contains(@id,"suggestions-listbox")]');
-		await $input?.press('Enter');
+		return res.json() as UberResponse<T>;
 	};
 
 	return {
-		calculatePriceEstimate: async (destination: string) => {
-			page = (await open()).page as Page;
-			await page.goto('https://www.uber.com/global/pt-br/price-estimate', {
-				waitUntil: 'networkidle0',
+		getSuggestedAddress: async (address: string, type: UberAddress) => {
+			const response = await fetchUberApi<UberSuggestions>('loadFESuggestions', {
+				type,
+				q: address,
 			});
-
-			// if (!process.env.UBER_PICKUP_ADDRESS) {
-			// 	console.error('UBER_PICKUP_ADDRESS is not set');
-			// 	return;
-			// }
-
-			await enterAddress('Rua Ester de Lima, 104', UberAddress.pickup);
-			await enterAddress(destination, UberAddress.destination);
-
-			const test = await page.waitForResponse(
-				'https://www.uber.com/api/loadFEEstimates?localeCode=pt-BR',
-			);
-			console.log(await test.json());
-
-			// page.close();
+			return response.data?.candidates[0]?.id as string;
+		},
+		getRidesEstimates: async (pickupPlaceId: string, destinationPlaceId: string) => {
+			const response = await fetchUberApi<UberEstimates>('loadFEEstimates', {
+				origin: {
+					id: pickupPlaceId,
+					provider: 'google_places',
+					locale,
+				},
+				destination: {
+					id: destinationPlaceId,
+					provider: 'google_places',
+					locale,
+				},
+			});
+			return response.data?.prices.reduce((estimates, ride) => {
+				return {
+					...estimates,
+					[ride.vehicleViewDisplayName]: ride.total,
+				};
+			}, {});
 		},
 	};
 };

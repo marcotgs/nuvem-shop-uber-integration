@@ -1,11 +1,21 @@
 'use strict';
 
 const path = require('path');
+const glob = require('glob');
 const nodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const CopyPlugin = require('copy-webpack-plugin');
 const tsConfigPath = 'tsconfig.json';
+
+const toEntry = (filesPaths) => {
+	const entries = {};
+	filesPaths.forEach((filePath) => {
+		const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
+		entries[fileName.replace(/\.ts$/, '')] = filePath;
+	});
+	return entries;
+};
 
 const customStats = {
 	stats: {
@@ -27,15 +37,15 @@ const customStats = {
 
 module.exports = (_env, argv) => {
 	const isDevelopment = argv.mode === 'development';
+
 	return {
-		entry: './src/main.ts',
-		devtool: 'nosources-source-map',
+		entry: './src/functions/index.ts',
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			filename: '[name].js',
-			sourceMapFilename: '[file].map',
-			libraryTarget: 'commonjs',
+			libraryTarget: 'commonjs2',
 		},
+		target: 'node',
 		optimization: {
 			minimize: !isDevelopment,
 		},
@@ -64,13 +74,6 @@ module.exports = (_env, argv) => {
 		plugins: [
 			new CopyPlugin({
 				patterns: [{ from: './package.json', to: '.' }],
-			}),
-			new WebpackShellPluginNext({
-				onDoneWatch: {
-					scripts: ['yarn start'],
-					blocking: false,
-					parallel: true,
-				},
 			}),
 		],
 		externalsPresets: { node: true },

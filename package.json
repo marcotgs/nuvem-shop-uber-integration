@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "Marco Tulio",
   "description": "",
+  "main": "main.js",
   "lint-staged": {
     "*.{js,ts,tsx,md}": [
       "prettier --write"
@@ -12,10 +13,9 @@
     ]
   },
   "scripts": {
-    "prepare": "husky install",
-    "dev": "webpack --watch --mode=development",
-    "start": "functions-framework --source=build/index.js --target=helloWorld",
-    "watch": "concurrently \"tsc -w\" \"nodemon --watch ./build/ --exec npm run start\""
+    "husky": "husky install",
+    "start": "nodemon",
+    "build": "webpack --mode=development"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/marcotgs/nuvem-shop-uber-integration#readme",
   "dependencies": {
     "express": "^4.18.1",
-    "puppeteer": "^16.2.0"
+    "node-fetch": "2.6.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -36,16 +36,17 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.1",
     "@types/node": "^18.7.9",
+    "@types/node-fetch": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "copy-webpack-plugin": "^11.0.0",
-    "dotenv": "^16.0.1",
     "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "lint-staged": "^13.0.2",
+    "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
     "ts-loader": "^9.3.1",
     "ts-node": "^10.9.1",
