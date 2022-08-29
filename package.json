@@ -1,9 +1,14 @@
 {
   "name": "nuvem-shop-uber-integration",
   "version": "1.0.0",
-  "author": "Marco Tulio",
+  "author": "@marcotgs",
+  "private": true,
   "description": "",
-  "main": "main.js",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "lint-staged": {
     "*.{js,ts,tsx,md}": [
       "prettier --write"
@@ -14,22 +19,20 @@
   },
   "scripts": {
     "husky": "husky install",
-    "start": "nodemon",
-    "build": "webpack --mode=development"
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "dev": "turbo run dev"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marcotgs/nuvem-shop-uber-integration.git"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/marcotgs/nuvem-shop-uber-integration/issues"
   },
   "homepage": "https://github.com/marcotgs/nuvem-shop-uber-integration#readme",
-  "dependencies": {
-    "express": "^4.18.1",
-    "node-fetch": "2.6.7"
-  },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
@@ -52,6 +55,7 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.0",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "turbo": "^1.4.3",
     "typescript": "^4.7.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",

@@ -1,0 +1,16 @@
+{
+  "name": "@nuvem-shop-uber/api",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "@marcotgs",
+  "license": "MIT",
+  "scripts": {
+    "husky": "husky install",
+    "dev": "nodemon",
+    "build": "webpack --mode=development"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "node-fetch": "2.6.7"
+  }
+}
