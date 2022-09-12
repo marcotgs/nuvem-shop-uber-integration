@@ -1,22 +1,15 @@
 {
-  "name": "nuvem-shop-uber-integration",
+  "name": "nuvem-shop-uber",
   "version": "1.0.0",
   "author": "@marcotgs",
   "private": true,
+  "main": "index.js",
   "description": "",
   "license": "MIT",
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
-  "lint-staged": {
-    "*.{js,ts,tsx,md}": [
-      "prettier --write"
-    ],
-    "*.{js,ts,tsx}": [
-      "eslint --cache --fix"
-    ]
-  },
   "scripts": {
     "husky": "husky install",
     "build": "turbo run build",
@@ -24,11 +17,7 @@
     "lint": "turbo run lint",
     "dev": "turbo run dev"
   },
-  
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/marcotgs/nuvem-shop-uber-integration.git"
-  },
+  "repository": "git+https://github.com/marcotgs/nuvem-shop-uber-integration.git",
   "bugs": {
     "url": "https://github.com/marcotgs/nuvem-shop-uber-integration/issues"
   },
@@ -36,16 +25,13 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@nuvem-shop-uber/eslint-config": "*",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.1",
     "@types/node": "^18.7.9",
     "@types/node-fetch": "^2.6.2",
-    "@typescript-eslint/eslint-plugin": "^5.28.0",
-    "@typescript-eslint/parser": "^5.28.0",
     "copy-webpack-plugin": "^11.0.0",
-    "eslint": "^8.17.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint": "^8.23.0",
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "lint-staged": "^13.0.2",

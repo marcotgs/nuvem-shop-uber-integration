@@ -1,21 +1,12 @@
 'use strict';
 
 const path = require('path');
-const glob = require('glob');
 const nodeExternals = require('webpack-node-externals');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 const CopyPlugin = require('copy-webpack-plugin');
 const tsConfigPath = 'tsconfig.json';
 
-const toEntry = (filesPaths) => {
-	const entries = {};
-	filesPaths.forEach((filePath) => {
-		const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
-		entries[fileName.replace(/\.ts$/, '')] = filePath;
-	});
-	return entries;
-};
 
 const customStats = {
 	stats: {
