@@ -1,0 +1,8 @@
+{
+  "name": "@nuvemshop-uber/nuvem-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "@marcotgs",
+  "license": "MIT",
+  "private": true
+}

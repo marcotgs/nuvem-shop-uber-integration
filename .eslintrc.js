@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: ["@nuvem-shop-uber/eslint-config"],
+  extends: ["@nuvemshop-uber/eslint-config"],
 };
