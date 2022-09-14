@@ -1,1 +1,1 @@
-export { default as priceEstimate } from './price-estimate';
+export { default as priceEstimate } from './shipping/estimate';

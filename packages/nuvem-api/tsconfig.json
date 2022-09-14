@@ -1,0 +1,9 @@
+{
+  "extends": "@nuvemshop-uber/tsconfig/base.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "declaration": true,
+    "baseUrl": "src",
+  },
+  "include": ["src"]
+}

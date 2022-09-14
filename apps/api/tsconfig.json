@@ -1,11 +1,13 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@nuvemshop-uber/tsconfig/base.json",
   "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
-      "@core/*": ["core/*"],
-      "@testing/*": ["testing/*"]
+      "@core/*": ["core/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src", "../admin/pages/api/auth"]
 }
