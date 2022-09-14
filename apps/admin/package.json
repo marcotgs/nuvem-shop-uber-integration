@@ -11,9 +11,11 @@
   "dependencies": {
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@nuvemshop-uber/uber-api": "*"
   },
   "devDependencies": {
+    "@nuvemshop-uber/tsconfig": "*",
     "@types/node": "18.7.16",
     "@types/react": "18.0.19",
     "@types/react-dom": "18.0.6",

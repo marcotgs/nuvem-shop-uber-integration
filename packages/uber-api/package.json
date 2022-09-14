@@ -1,0 +1,12 @@
+{
+  "name": "@nuvemshop-uber/uber-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@nuvemshop-uber/eslint-config": "*",
+    "@nuvemshop-uber/tsconfig": "*",
+    "typescript": "^4.8.3"
+  }
+}
