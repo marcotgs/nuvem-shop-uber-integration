@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+const packageJSON = require('./package.json');
+const transpiledPackages = Object.keys(packageJSON.dependencies).filter((it) =>
+	it.includes('@nuvemshop-uber/'),
+);
 
-module.exports = nextConfig
+const withTM = require('next-transpile-modules')(transpiledPackages);
+
+const nextConfig = withTM({
+	reactStrictMode: true,
+	swcMinify: true,
+});
+
+module.exports = nextConfig;

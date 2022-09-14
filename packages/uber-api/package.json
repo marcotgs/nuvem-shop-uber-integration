@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "dependencies": {
+    "node-fetch": "2.6.7"
+  },
   "devDependencies": {
     "@nuvemshop-uber/eslint-config": "*",
     "@nuvemshop-uber/tsconfig": "*",
     "typescript": "^4.8.3"
+  
   }
 }

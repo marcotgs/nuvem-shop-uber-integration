@@ -16,7 +16,7 @@ export const api = (() => {
 			});
 
 	const auth = (path: string, options: RequestInit = {}) =>
-		fetch(`https://nuvemshop.com.br/apps/${path}`, {
+		fetch(`https://www.nuvemshop.com.br/apps/${path}`, {
 			...options,
 			headers: {
 				...options.headers,

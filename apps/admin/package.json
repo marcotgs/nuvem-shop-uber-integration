@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nuvemshop-uber/uber-api": "*",
+    "@nuvemshop-uber/nuvem-api": "*",
     "next": "12.3.0",
+    "next-transpile-modules": "^9.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "@nuvemshop-uber/uber-api": "*"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@nuvemshop-uber/tsconfig": "*",

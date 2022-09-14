@@ -9,10 +9,10 @@
   "devDependencies": {
     "@nuvemshop-uber/eslint-config": "*",
     "@nuvemshop-uber/tsconfig": "*",
-    "tsup": "^6.2.3",
+    "@types/node-fetch": "^2.6.2",
     "typescript": "^4.8.3"
   },
   "dependencies": {
-    "dotenv": "^16.0.2"
+    "node-fetch": "2.6.7"
   }
 }

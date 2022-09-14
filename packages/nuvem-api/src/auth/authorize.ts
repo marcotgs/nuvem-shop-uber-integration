@@ -1,14 +1,23 @@
+import { getEnv } from '../environments';
 import { api } from '../lib/client';
 
+const env = getEnv();
+
 export const authorize = async (code: string) => {
-	const response = await api.auth('authorize', {
+	const response = await api.auth('authorize/token', {
 		method: 'POST',
 		body: JSON.stringify({
 			code,
 			grant_type: 'authorization_code',
-			client_id: '0000',
-			client_secret: 'xxxxxxxx',
+			client_id: env.APP_CLIENT_ID,
+			client_secret: env.APP_CLIENT_SECRET,
 		}),
 	});
-	return response.json();
+
+	const json = await response.json();
+
+	if (json.error) {
+		throw new Error(JSON.stringify(json));
+	}
+	return json;
 };

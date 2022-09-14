@@ -1,6 +1,8 @@
-import dotenv from 'dotenv';
-import path from 'path';
+interface Env {
+	[key: string]: string;
+}
 
-const env = process.env.NODE_ENV || 'development';
-
-dotenv.config({ path: path.resolve(`.env.${env}`) });
+export const getEnv = (): Env => {
+	const env = process.env.NODE_ENV || 'development';
+	return require(`./env.${env}.js`).default;
+};

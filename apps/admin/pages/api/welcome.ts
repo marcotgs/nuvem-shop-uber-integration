@@ -1,11 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-// import { apiClient } from '@nuvemshop-uber/nuvem-api';
+import { apiClient } from '@nuvemshop-uber/nuvem-api';
+
+const { auth } = apiClient();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	const { code } = req.body as { code: string };
-	// const { auth } = apiClient();
+	try {
+		const { code } = req.query as { code: string };
 
-	// await auth.authorize(code);
+		const authorization = await auth.authorize(code);
 
-	res.send('Obrigado por instalar a aplicação!');
+		console.log(authorization);
+
+		res.send('Welcome!');
+	} catch (error: any) {
+		res.status(500).json(JSON.parse(error.message));
+	}
 };
