@@ -11,6 +11,7 @@
   "dependencies": {
     "@nuvemshop-uber/uber-api": "*",
     "@nuvemshop-uber/nuvem-api": "*",
+    "@nuvemshop-uber/db": "*",
     "next": "12.3.0",
     "next-transpile-modules": "^9.0.0",
     "react": "18.2.0",

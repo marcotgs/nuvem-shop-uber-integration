@@ -1,0 +1,17 @@
+{
+  "name": "@nuvemshop-uber/db",
+  "version": "1.0.0",
+  "author": "@marcotgs",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@google-cloud/firestore": "^6.2.0"
+  },
+  "devDependencies": {
+    "@nuvemshop-uber/tsconfig": "*",
+    "@nuvemshop-uber/eslint-config": "*",
+    "typescript": "^4.8.3"
+  }
+}

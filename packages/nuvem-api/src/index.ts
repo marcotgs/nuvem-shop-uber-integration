@@ -1,4 +1,3 @@
-import './environments';
 import { ApiClient } from './lib/types';
 import * as auth from './auth';
 
