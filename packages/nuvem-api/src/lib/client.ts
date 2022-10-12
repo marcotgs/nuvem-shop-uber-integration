@@ -1,11 +1,11 @@
 import fetch, { RequestInit } from 'node-fetch';
-import { ApiClient } from './types';
+import { NuvemApiClient, NuvemResponse } from './types';
 
 export const api = (() => {
 	const client =
-		({ storeId, authToken }: ApiClient = {}) =>
-		(path: string, options: RequestInit = {}) =>
-			fetch(`https://api.nuvemshop.com.br/v1/${storeId}/${path}`, {
+		({ storeId, authToken }: NuvemApiClient = {}) =>
+		async <T extends any>(path: string, options: RequestInit = {}) => {
+			const response = await fetch(`https://api.nuvemshop.com.br/v1/${storeId}${path}`, {
 				...options,
 				headers: {
 					...options.headers,
@@ -15,8 +15,15 @@ export const api = (() => {
 				},
 			});
 
+			if (!response.ok) {
+				throw new Error(response.statusText);
+			}
+
+			return response.json() as Promise<NuvemResponse<T>>;
+		};
+
 	const auth = (path: string, options: RequestInit = {}) =>
-		fetch(`https://www.nuvemshop.com.br/apps/${path}`, {
+		fetch(`https://www.nuvemshop.com.br/apps${path}`, {
 			...options,
 			headers: {
 				...options.headers,

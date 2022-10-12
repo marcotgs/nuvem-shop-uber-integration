@@ -1,8 +1,11 @@
-import { ApiClient } from './lib/types';
 import * as auth from './auth';
+import * as shipping from './shipping';
 
-export const apiClient = (options?: ApiClient) => {
+export const apiClient = () => {
 	return {
 		auth,
+		...shipping,
 	};
 };
+
+export * from './auth/types';

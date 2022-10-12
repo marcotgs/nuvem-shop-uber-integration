@@ -1,8 +1,17 @@
 import { initFirestore } from '../init';
-import { Account } from './types';
+import { IAccount } from './types';
 
 const firestore = initFirestore();
 
-export const addAccount = async (account: Account) => {
-	await firestore.collection('accounts').add(account);
+const getCollectionRef = () => {
+	const collectionName = 'accounts';
+	return firestore.collection(collectionName);
+}
+
+export const addAccount = async (account: IAccount) => {
+	await getCollectionRef().add(account);
+};
+
+export const findAccountByUserId = async (userId: string) => {
+	await getCollectionRef().where('userId', '==', userId).get();
 };
