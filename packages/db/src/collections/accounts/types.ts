@@ -1,4 +1,4 @@
-export interface IAccount {
+export interface DBAccount {
 	accessToken: string;
 	tokenType: string;
 	scope: string;

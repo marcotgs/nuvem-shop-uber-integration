@@ -1,1 +1,2 @@
-export * from './accounts';
+export * from './collections';
+export * from './entities';

@@ -6,6 +6,7 @@ interface PriceEstimation {
 }
 
 export default async (req: Request, res: Response) => {
+	console.log('aqui')
 	const { destination } = req.body as PriceEstimation;
 
 	const [pickupPlaceId, destinationPlaceId] = await Promise.all([

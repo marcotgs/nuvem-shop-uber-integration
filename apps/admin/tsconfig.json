@@ -15,7 +15,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@core/*": ["./core/*"],
+      "@entities/*": ["../../packages/db/src/entities/*"],
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

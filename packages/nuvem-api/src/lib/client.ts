@@ -5,12 +5,13 @@ export const api = (() => {
 	const client =
 		({ storeId, authToken }: NuvemApiClient = {}) =>
 		async <T extends any>(path: string, options: RequestInit = {}) => {
+			console.log(options, authToken, storeId);
 			const response = await fetch(`https://api.nuvemshop.com.br/v1/${storeId}${path}`, {
 				...options,
 				headers: {
 					...options.headers,
 					'Content-Type': 'application/json',
-					'User-Agent': 'NuvemShop + Uber (marcotuliog.dev@gmail.com)',
+					'User-Agent': process.env.APP_NAME as string,
 					Authentication: `bearer ${authToken}`,
 				},
 			});
