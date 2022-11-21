@@ -1,11 +1,17 @@
 import { DBShipping, findShippingInfo, getShippingCollection } from '../collections/shipping';
 
-export const get = async (userId: string) => {
-	return await findShippingInfo(userId);
+export const get = async (storeId: string) => {
+	return await findShippingInfo(storeId);
 };
 
-export const add = async (userId: string, shipping: DBShipping) => {
-	return (await getShippingCollection(userId)).add(shipping);
+export const data = async (storeId: string) => {
+	const shippingRef = await findShippingInfo(storeId);
+	const shippingDoc = await shippingRef.get();
+	return shippingDoc.data() as DBShipping;
 };
 
-export const shipping = { get, add };
+export const add = async (storeId: string, shipping: DBShipping) => {
+	return (await getShippingCollection(storeId)).add(shipping);
+};
+
+export const shipping = { get, data, add };

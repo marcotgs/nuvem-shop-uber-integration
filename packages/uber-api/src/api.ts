@@ -1,5 +1,6 @@
+import camelCase from 'lodash.camelcase';
 import { fetchUberApi, locale } from './client';
-import { UberAddress, UberSuggestions, UberEstimates } from './types';
+import { UberAddress, UberSuggestions, UberEstimates, UberPrices } from './types';
 
 export const getSuggestedAddress = async (address: string, type: UberAddress) => {
 	const response = await fetchUberApi<UberSuggestions>('loadFESuggestions', {
@@ -22,10 +23,16 @@ export const getRidesEstimates = async (pickupPlaceId: string, destinationPlaceI
 			locale,
 		},
 	});
-	return response.data?.prices.reduce((estimates, ride) => {
+
+	return response.data?.prices.reduce<UberPrices>((estimates, ride) => {
 		return {
 			...estimates,
-			[ride.vehicleViewDisplayName]: ride.total,
+			[camelCase(ride.vehicleViewDisplayName)]: ride.total,
 		};
-	}, {});
+	}, {} as UberPrices);
+};
+
+export const uber = {
+	getSuggestedAddress,
+	getRidesEstimates,
 };

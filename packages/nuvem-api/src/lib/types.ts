@@ -3,14 +3,14 @@ type Spread<T1, T2> = {
 } & T2;
 
 interface NuvemResponseData {
-	id?: number;
+	id: number;
 	created_at?: string;
 	updated_at?: string;
 	deleted_at?: string;
 }
 export interface NuvemApiClient {
 	storeId?: string;
-	authToken?: string;
+	storeToken?: string;
 }
 
 export type NuvemResponse<T> = Spread<T, NuvemResponseData>;

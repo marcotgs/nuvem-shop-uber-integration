@@ -1,6 +1,7 @@
 export interface DBAccount {
-	accessToken: string;
+	storeToken: string;
 	tokenType: string;
 	scope: string;
-	userId: string;
+	storeId: string;
+	token?: string;
 }

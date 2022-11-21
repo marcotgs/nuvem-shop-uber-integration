@@ -12,10 +12,10 @@ export const addAccount = async (account: DBAccount) => {
 	return await getCollectionRef().add(account);
 };
 
-export const findAccountByUserId = async (userId: string) => {
+export const findAccountByStoreId = async (storeId: string) => {
 	const {
 		docs: [doc],
-	} = await getCollectionRef().where('userId', '==', userId).get();
+	} = await getCollectionRef().where('storeId', '==', storeId).get();
 
 	return doc?.ref;
 };

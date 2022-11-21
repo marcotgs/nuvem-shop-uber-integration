@@ -1,11 +1,14 @@
-import { NextApiRequest } from 'next';
+import { DBAccount } from '@nuvemshop-uber/db';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
-export const getAuthData = (req: NextApiRequest) => {
-	const accountId = req.cookies.accountId;
+export const getAuthData = (token: string) => {
+	const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
 
-	if (!accountId) {
-		throw new Error('Missing authentication data');
-	}
+	return { storeId: decoded.storeId };
+};
 
-	return { accountId };
+export const generateAuthToken = ({ storeId }: DBAccount) => {
+	return jwt.sign({ storeId }, process.env.JWT_SECRET as string, {
+		expiresIn: '7d',
+	});
 };

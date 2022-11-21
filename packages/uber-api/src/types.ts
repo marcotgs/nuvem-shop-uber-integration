@@ -14,3 +14,11 @@ export enum UberAddress {
 export interface UberResponse<T> {
 	data?: T;
 }
+
+export interface UberPrices {
+	flashMoto: string;
+	moto: string;
+	uberX: string;
+	comfort: string;
+	black: string;
+}

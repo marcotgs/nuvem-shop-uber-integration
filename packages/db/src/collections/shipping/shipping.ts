@@ -1,15 +1,14 @@
-import { findAccountByUserId } from '../accounts';
-import { DBShipping } from './types';
+import { findAccountByStoreId } from '../accounts';
 
 const collectionName = 'shipping';
 
-export const getShippingCollection = async (userId: string) => {
-	const accountsData = await findAccountByUserId(userId);
+export const getShippingCollection = async (storeId: string) => {
+	const accountsData = await findAccountByStoreId(storeId);
 	return accountsData.collection(collectionName);
 };
 
-export const findShippingInfo = async (userId: string) => {
-	const shippingCollection = await getShippingCollection(userId);
+export const findShippingInfo = async (storeId: string) => {
+	const shippingCollection = await getShippingCollection(storeId);
 	const {
 		docs: [shippingDoc],
 	} = await shippingCollection.get();

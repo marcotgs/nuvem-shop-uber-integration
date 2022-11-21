@@ -3,9 +3,8 @@ import { NuvemApiClient, NuvemResponse } from './types';
 
 export const api = (() => {
 	const client =
-		({ storeId, authToken }: NuvemApiClient = {}) =>
+		({ storeId, storeToken: authToken }: NuvemApiClient = {}) =>
 		async <T extends any>(path: string, options: RequestInit = {}) => {
-			console.log(options, authToken, storeId);
 			const response = await fetch(`https://api.nuvemshop.com.br/v1/${storeId}${path}`, {
 				...options,
 				headers: {

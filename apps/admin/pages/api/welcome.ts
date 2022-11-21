@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { apiClient, NuvemAuthResponse } from '@nuvemshop-uber/nuvem-api';
-import { account, shipping, DBAccount, DBShipping } from '@nuvemshop-uber/db';
+import { account, shipping, shippingOptions, DBAccount, DBShipping } from '@nuvemshop-uber/db';
+import { generateAuthToken } from '@core/auth';
 
 const client = apiClient();
 
@@ -12,31 +13,43 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
 		const authResponse = (await client.auth.authorize(code)) as NuvemAuthResponse;
 		const accountData: DBAccount = {
-			userId: authResponse.user_id,
-			accessToken: authResponse.access_token,
+			storeId: authResponse.user_id,
+			storeToken: authResponse.access_token,
 			tokenType: authResponse.token_type,
 			scope: authResponse.scope,
 		};
 
-		const { addShippingCarrier } = client.shipping({
-			authToken: accountData.accessToken,
-			storeId: accountData.userId,
+		const { addShippingCarrier, addShippingOption } = client.shippingApi({
+			storeToken: accountData.storeToken,
+			storeId: accountData.storeId,
 		});
 
 		const shippingData = await addShippingCarrier({
-			name: 'Motoboy',
+			name: 'Uber',
 			types: 'ship',
-			callback_url: `${process.env.BASE_URL}/api/shipping/estimate`,
+			callback_url: `https://57a3-138-199-58-40.ngrok.io/api/shipping/estimate`,
 		});
 
-		console.log(shippingData, shippingData as DBShipping);
+		const shippingOptionData = await addShippingOption(shippingData.id, {
+			allow_free_shipping: false,
+			additional_cost: 0,
+			additional_days: 0,
+			name: 'Motoboy',
+			code: 'uber',
+			active: true,
+		});
 
-		await account.update(accountData);
-		await shipping.add(accountData.userId, shippingData as DBShipping);
+		const token = generateAuthToken(accountData);
 
-		res.send('App instalado com sucesso! Você pode fechar essa página.');
+		await account.update({
+			...accountData,
+			token,
+		});
+		await shipping.add(accountData.storeId, shippingData as DBShipping);
+		await shippingOptions.add(accountData.storeId, shippingOptionData);
+
+		res.send(`App instalado com sucesso! Você pode fechar essa página. ${token}`);
 	} catch (error: any) {
-		console.log(error);
 		res.status(500).json({ error: error.message });
 	}
 };

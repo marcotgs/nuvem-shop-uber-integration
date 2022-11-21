@@ -3,4 +3,5 @@ export interface DBShipping {
 	name: string;
 	active?: boolean;
 	types: string;
+	pickup?: string;
 }

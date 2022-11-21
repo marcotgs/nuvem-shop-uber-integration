@@ -9,3 +9,4 @@ export const apiClient = () => {
 };
 
 export * from './auth/types';
+export * from './shipping/types';
