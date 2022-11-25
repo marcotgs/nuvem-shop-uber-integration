@@ -6,6 +6,15 @@
     },
     "lint": {
       "outputs": []
+    },
+    "build": {
+      "outputs": ["dist/**", ".next/**", "public/dist/**"],
+      "dependsOn": ["^build"],
+      "env": ["NEXT_PUBLIC_API_HOST"]
+    },
+    "start": {
+      "outputs": [],
+      "cache": false
     }
   }
 }

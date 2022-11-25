@@ -3,19 +3,22 @@
   "version": "1.0.0",
   "author": "@marcotgs",
   "private": true,
-  "main": "index.js",
   "description": "",
   "license": "MIT",
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "husky": "husky install",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
-    "dev": "turbo run dev"
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "docker:build": "COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yml build --parallel",
+    "docker:stop": "docker kill $(docker ps -q) && docker rm $(docker ps -a -q)",
+    "docker:up": "docker-compose -f docker-compose.yml up"
   },
   "repository": "git+https://github.com/marcotgs/nuvem-shop-uber-integration.git",
   "bugs": {

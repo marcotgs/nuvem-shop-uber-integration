@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4001 & local-ssl-proxy --source 4000 --target 4001",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 4001 & local-ssl-proxy --source 4000 --target 4001",
+    "build:sandbox": "NODE_ENV=development next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {

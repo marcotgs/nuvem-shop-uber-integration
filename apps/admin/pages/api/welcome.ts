@@ -27,7 +27,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 		const shippingData = await addShippingCarrier({
 			name: 'Uber',
 			types: 'ship',
-			callback_url: `https://57a3-138-199-58-40.ngrok.io/api/shipping/estimate`,
+			callback_url: `${process.env.BASE_URL}/api/shipping/estimate`,
 		});
 
 		const shippingOptionData = await addShippingOption(shippingData.id, {
