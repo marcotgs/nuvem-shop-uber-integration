@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "nuvem-shop-uber-integration",
   "options": {
     "allow-unauthenticated": true,
     "memory": "256Mi",
