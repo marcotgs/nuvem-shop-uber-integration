@@ -5,9 +5,14 @@ enum ShippingOptions {
 	NORMAL,
 }
 
+const prefixEnv = (name: string) => {
+	const isProd = process.env.APP_ENV === 'prod';
+	return `${!isProd && `[${process.env.APP_ENV}]`} ${name}`;
+};
+
 const shippingOptions = {
-	[ShippingOptions.FAST]: 'Motoboy Rapidão - entrega em até 1h:30',
-	[ShippingOptions.NORMAL]: 'Motoboy baratão  - entrega em até 1 dia, 12:00 as 18:00',
+	[ShippingOptions.FAST]: prefixEnv('Motoboy Rapidão - entrega em até 1h:30'),
+	[ShippingOptions.NORMAL]: prefixEnv('Motoboy baratão  - entrega em até 1 dia, 12:00 as 18:00'),
 };
 
 const baseRate = {
@@ -57,6 +62,15 @@ const getNormalShippingRate = async (estimatedPrice: number) => {
 };
 
 export const getShippingRates = async (total: number, estimatedPrice: number) => {
+
+	if(estimatedPrice <= 10) {
+		return [{
+			...baseRate,
+			name: shippingOptions[ShippingOptions.FAST],
+			price: estimatedPrice
+		}];
+	}
+
 	const fastShippingRate = await getFastShippingRate(total, estimatedPrice);
 	const normalShippingRate = await getNormalShippingRate(estimatedPrice);
 

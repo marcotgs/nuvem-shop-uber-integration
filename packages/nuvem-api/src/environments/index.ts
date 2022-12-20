@@ -3,6 +3,6 @@ interface Env {
 }
 
 export const getEnv = (): Env => {
-	const env = process.env.NODE_ENV || 'development';
+	const env = process.env.APP_ENV || 'development';
 	return require(`./env.${env}.js`).default;
 };

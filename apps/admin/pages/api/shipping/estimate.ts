@@ -16,6 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 		]);
 
 		const estimates = await uber.getRidesEstimates(pickupPlaceId, destinationPlaceId);
+		console.log(estimates);
 
 		const total = items?.reduce((total, item) => total + item.price * item.quantity, 0) || 0;
 

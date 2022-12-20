@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "tunnel": "lt --subdomain nuvemshop-uber-dev -p 3000",
     "build": "next build",
     "build:sandbox": "NODE_ENV=development next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@nuvemshop-uber/uber-api": "*",
-    "@nuvemshop-uber/nuvem-api": "*",
     "@nuvemshop-uber/db": "*",
+    "@nuvemshop-uber/nuvem-api": "*",
+    "@nuvemshop-uber/uber-api": "*",
     "next": "12.3.0",
     "next-transpile-modules": "^9.0.0",
     "react": "18.2.0",
@@ -25,6 +26,7 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.23.0",
     "eslint-config-next": "12.3.0",
+    "localtunnel": "^2.0.2",
     "typescript": "4.8.3"
   }
 }
